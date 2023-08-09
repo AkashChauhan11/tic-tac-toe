@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tic_tac_toe/provider/room_data_provider.dart';
+import 'package:tic_tac_toe/screens/create_room.dart';
+import 'package:tic_tac_toe/screens/game_screen.dart';
+import 'package:tic_tac_toe/screens/join_room.dart';
+import 'package:tic_tac_toe/screens/main_menu_screen.dart';
+import 'package:tic_tac_toe/utils/colors.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => RoomdataProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: bgColor),
+        routes: {
+          MainMenuScreen.routeName: (context) => const MainMenuScreen(),
+          JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),
+          CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
+          GameScreen.routeame: (context) => const GameScreen()
+        },
+        initialRoute: MainMenuScreen.routeName,
+      ),
+    );
+  }
+}
